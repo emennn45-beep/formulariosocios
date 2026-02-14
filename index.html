@@ -3,170 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inscripción de Nuevos Socios</title>
+<title>Inscripción</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     margin: 0;
+    padding: 0;
+
+    background-image: url("https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/fondosocioformulario.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
     padding: 20px;
 }
 
-/* Contenedor principal */
-.container {
-    max-width: 500px;
-    margin: auto;
-    background: white;
+#formulario {
+    background: rgba(0,0,0,0.55);
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-/* Labels */
+/* LABELS */
 label {
     display: block;
-    margin-top: 15px;
+    margin-top: 14px;
+    color: white;
     font-weight: bold;
-    color: #444;
 }
 
-/* Inputs */
+/* INPUTS */
 input {
     width: 100%;
-    padding: 12px;
+    padding: 11px;
     margin-top: 6px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: 0.2s;
+
+    background: rgba(0,0,0,0.4);
+    border: 1px solid white;
+    border-radius: 6px;
+
+    color: white;
+    font-size: 15px;
     box-sizing: border-box;
 }
 
-input:focus {
-    border-color: #28a745;
-    outline: none;
-    box-shadow: 0 0 5px rgba(40,167,69,0.3);
+input::placeholder {
+    color: rgba(255,255,255,0.7);
 }
 
-/* Checkbox */
+input:focus {
+    outline: none;
+}
+
+/* CHECKBOX */
 .checkbox {
     margin-top: 18px;
+    color: white;
     font-size: 14px;
 }
 
 input[type="checkbox"] {
-    -webkit-appearance: none;
     appearance: none;
     width: 18px;
     height: 18px;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background: white;
+    border: 2px solid white;
+    background: transparent;
     margin-right: 8px;
-    position: relative;
-    top: 2px;
     vertical-align: middle;
 }
 
 input[type="checkbox"]:checked {
-    background: #28a745 url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3E%3C/svg%3E") center/12px no-repeat;
-    border-color: #28a745;
+    background: white;
 }
 
-/* Botón */
+/* BOTON */
 button {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 22px;
     padding: 14px;
-    background: #28a745;
-    color: white;
+
+    background: white;
+    color: black;
+
     border: none;
     border-radius: 8px;
-    font-size: 17px;
+
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #218838;
-    transform: translateY(-1px);
 }
 
 #mensaje {
     text-align: center;
-    margin-top: 20px;
-    font-weight: bold;
+    margin-top: 15px;
+    color: white;
 }
 
-/* Página de éxito */
+/* EXITO */
 #exito {
     display: none;
     text-align: center;
+    color: white;
 }
-#exito h2 {
-    color: #28a745;
-}
-#exito p {
-    color: #333;
-    margin: 10px 0;
-}
-#exito button {
-    background-color: #007bff;
+
+/* RESPONSIVE */
+@media (max-width:480px){
+    #formulario {
+        padding:18px;
+    }
+
+    input {
+        font-size:14px;
+    }
 }
 </style>
 </head>
+
 <body>
+
 <div class="container">
-    <div id="formulario">
-        <h1>Inscripción de Nuevos Socios</h1>
-        <form id="form-inscripcion">
-            <label>Nombre:</label>
-            <input type="text" id="nombre" required>
 
-            <label>Apellido:</label>
-            <input type="text" id="apellido" required>
+<div id="formulario">
 
-            <label>DNI:</label>
-            <input type="text" id="dni" required>
+<form id="form-inscripcion">
 
-            <label>Teléfono / WhatsApp:</label>
-            <input type="tel" id="telefono" required>
+<label>Nombre</label>
+<input type="text" id="nombre" required>
 
-            <label>Email:</label>
-            <input type="email" id="email" required>
+<label>Apellido</label>
+<input type="text" id="apellido" required>
 
-            <label>Fecha de nacimiento (opcional):</label>
-            <input type="date" id="fecha_nacimiento">
+<label>DNI</label>
+<input type="text" id="dni" required>
 
-            <label>Domicilio (opcional):</label>
-            <input type="text" id="domicilio">
+<label>Teléfono / WhatsApp</label>
+<input type="tel" id="telefono" required>
 
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" id="acepto" required>
-                    Acepto los términos y condiciones del club.
-                </label>
-            </div>
+<label>Email</label>
+<input type="email" id="email" required>
 
-            <button type="submit">Enviar Inscripción</button>
-        </form>
-        <div id="mensaje"></div>
-    </div>
+<label>Fecha de nacimiento (opcional)</label>
+<input type="date" id="fecha_nacimiento">
 
-    <div id="exito">
-        <h2>¡Inscripción Exitosa!</h2>
-        <p>Ahora haz el aporte único desde acá:</p>
-        <button onclick="window.location.href='https://tupagina-de-aporte.com'">Hacer Aporte</button>
-        <p>Al terminar el aporte no toques ni quites la pantalla porque serás redirigido para el acceso a la comunidad Persos United.</p>
-    </div>
+<label>Domicilio (opcional)</label>
+<input type="text" id="domicilio">
+
+<div class="checkbox">
+<label>
+<input type="checkbox" id="acepto" required>
+Acepto los términos y condiciones del club.
+</label>
+</div>
+
+<button type="submit">Enviar Inscripción</button>
+
+</form>
+
+<div id="mensaje"></div>
+
+</div>
+
+<div id="exito">
+<h2>¡Inscripción Exitosa!</h2>
+<p>Ahora haz el aporte único desde acá:</p>
+<button onclick="window.location.href='https://tupagina-de-aporte.com'">Hacer Aporte</button>
+<p>No cierres la pantalla. Serás redirigido automáticamente.</p>
+</div>
+
 </div>
 
 <script>
@@ -180,33 +196,31 @@ const exito = document.getElementById('exito');
 const formulario = document.getElementById('formulario');
 
 form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  mensaje.textContent = '';
+e.preventDefault();
+mensaje.textContent = '';
 
-  const data = {
-    nombre: document.getElementById('nombre').value.trim(),
-    apellido: document.getElementById('apellido').value.trim(),
-    dni: document.getElementById('dni').value.trim(),
-    telefono: document.getElementById('telefono').value.trim(),
-    email: document.getElementById('email').value.trim(),
-    fecha_nacimiento: document.getElementById('fecha_nacimiento').value || null,
-    domicilio: document.getElementById('domicilio').value.trim() || null,
-  };
+const data = {
+nombre: nombre.value.trim(),
+apellido: apellido.value.trim(),
+dni: dni.value.trim(),
+telefono: telefono.value.trim(),
+email: email.value.trim(),
+fecha_nacimiento: fecha_nacimiento.value || null,
+domicilio: domicilio.value.trim() || null
+};
 
-  try {
-    const { data: insertData, error } = await supabaseClient
-      .from('inscripciones')
-      .insert([data]);
+try {
+const { error } = await supabaseClient.from('inscripciones').insert([data]);
+if (error) throw error;
 
-    if (error) throw error;
+formulario.style.display = 'none';
+exito.style.display = 'block';
 
-    formulario.style.display = 'none';
-    exito.style.display = 'block';
-  } catch (err) {
-    console.error('Error:', err);
-    mensaje.textContent = 'Error al guardar: ' + (err.message || 'Intenta de nuevo más tarde');
-  }
+} catch (err) {
+mensaje.textContent = 'Error al guardar';
+}
 });
 </script>
+
 </body>
 </html>
