@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscripción Nuevos Socios - Persos Unidos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 30px auto; padding: 20px; background: #f8f9fa; }
+        h1 { text-align: center; color: #333; }
+        label { display: block; margin: 12px 0 5px; font-weight: bold; }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #218838; }
+        .checkbox { margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <h1>Inscripción de Nuevos Socios</h1>
+    <form action="procesar.php" method="POST">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required>
+
+        <label>Apellido:</label>
+        <input type="text" name="apellido" required>
+
+        <label>DNI:</label>
+        <input type="text" name="dni" required>
+
+        <label>Teléfono / WhatsApp:</label>
+        <input type="tel" name="telefono" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+
+        <label>Fecha de nacimiento (opcional):</label>
+        <input type="date" name="fecha_nacimiento">
+
+        <label>Domicilio (opcional):</label>
+        <input type="text" name="domicilio">
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="acepto" required> Acepto los términos y condiciones del club.
+            </label>
+        </div>
+
+        <button type="submit">Enviar Inscripción</button>
+    </form>
+</body>
+</html>
