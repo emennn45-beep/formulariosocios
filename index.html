@@ -8,126 +8,127 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-
-    background-image: url("https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/fondosocioformulario.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    min-height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+html,body{
+margin:0;
+padding:0;
+height:100%;
 }
 
-.container {
-    width: 100%;
-    max-width: 420px;
-    padding: 20px;
+body{
+font-family:Arial,sans-serif;
+background:url("https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/fondosocioformulario.png") no-repeat center center fixed;
+background-size:cover;
+
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
-#formulario {
-    background: rgba(0,0,0,0.55);
-    padding: 25px;
-    border-radius: 12px;
+/* CONTENEDOR */
+.container{
+width:100%;
+max-width:420px;
+padding:20px;
+}
+
+/* FORMULARIO SIN FONDO */
+#formulario{
+background:transparent;
 }
 
 /* LABELS */
-label {
-    display: block;
-    margin-top: 14px;
-    color: white;
-    font-weight: bold;
+label{
+display:block;
+margin-top:14px;
+color:white;
+font-weight:bold;
 }
 
-/* INPUTS */
-input {
-    width: 100%;
-    padding: 11px;
-    margin-top: 6px;
+/* INPUTS FLOTANTES */
+input{
+width:100%;
+padding:12px 6px;
+margin-top:6px;
 
-    background: rgba(0,0,0,0.4);
-    border: 1px solid white;
-    border-radius: 6px;
+background:transparent;
+border:none;
+border-bottom:1px solid white;
 
-    color: white;
-    font-size: 15px;
-    box-sizing: border-box;
+color:white;
+font-size:15px;
+box-sizing:border-box;
 }
 
-input::placeholder {
-    color: rgba(255,255,255,0.7);
+input::placeholder{
+color:rgba(255,255,255,.7);
 }
 
-input:focus {
-    outline: none;
+input:focus{
+outline:none;
+border-bottom:2px solid white;
 }
 
 /* CHECKBOX */
-.checkbox {
-    margin-top: 18px;
-    color: white;
-    font-size: 14px;
+.checkbox{
+margin-top:18px;
+color:white;
+font-size:14px;
 }
 
-input[type="checkbox"] {
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 2px solid white;
-    background: transparent;
-    margin-right: 8px;
-    vertical-align: middle;
+input[type="checkbox"]{
+appearance:none;
+width:18px;
+height:18px;
+border:2px solid white;
+background:transparent;
+margin-right:8px;
+vertical-align:middle;
 }
 
-input[type="checkbox"]:checked {
-    background: white;
+input[type="checkbox"]:checked{
+background:white;
 }
 
 /* BOTON */
-button {
-    width: 100%;
-    margin-top: 22px;
-    padding: 14px;
+button{
+width:100%;
+margin-top:24px;
+padding:14px;
 
-    background: white;
-    color: black;
+background:white;
+color:black;
 
-    border: none;
-    border-radius: 8px;
+border:none;
+border-radius:8px;
 
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
 }
 
-#mensaje {
-    text-align: center;
-    margin-top: 15px;
-    color: white;
+/* MENSAJE */
+#mensaje{
+text-align:center;
+margin-top:15px;
+color:white;
 }
 
 /* EXITO */
-#exito {
-    display: none;
-    text-align: center;
-    color: white;
+#exito{
+display:none;
+text-align:center;
+color:white;
 }
 
-/* RESPONSIVE */
-@media (max-width:480px){
-    #formulario {
-        padding:18px;
-    }
+/* MOBILE */
+@media(max-width:480px){
+.container{
+padding:16px;
+}
 
-    input {
-        font-size:14px;
-    }
+input{
+font-size:14px;
+}
 }
 </style>
 </head>
@@ -180,44 +181,44 @@ Acepto los términos y condiciones del club.
 <h2>¡Inscripción Exitosa!</h2>
 <p>Ahora haz el aporte único desde acá:</p>
 <button onclick="window.location.href='https://tupagina-de-aporte.com'">Hacer Aporte</button>
-<p>No cierres la pantalla. Serás redirigido automáticamente.</p>
+<p>No cierres la pantalla.</p>
 </div>
 
 </div>
 
 <script>
-const supabaseUrl = 'https://sacnwhuuuogjvgvxqdky.supabase.co';
-const supabaseKey = 'sb_publishable_FqkvHSOJk8YN2mgh-UmLew_a3y4q8xB';
-const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+const supabaseUrl='https://sacnwhuuuogjvgvxqdky.supabase.co';
+const supabaseKey='sb_publishable_FqkvHSOJk8YN2mgh-UmLew_a3y4q8xB';
+const supabaseClient=supabase.createClient(supabaseUrl,supabaseKey);
 
-const form = document.getElementById('form-inscripcion');
-const mensaje = document.getElementById('mensaje');
-const exito = document.getElementById('exito');
-const formulario = document.getElementById('formulario');
+const form=document.getElementById('form-inscripcion');
+const mensaje=document.getElementById('mensaje');
+const exito=document.getElementById('exito');
+const formulario=document.getElementById('formulario');
 
-form.addEventListener('submit', async (e) => {
+form.addEventListener('submit',async(e)=>{
 e.preventDefault();
-mensaje.textContent = '';
+mensaje.textContent='';
 
-const data = {
-nombre: nombre.value.trim(),
-apellido: apellido.value.trim(),
-dni: dni.value.trim(),
-telefono: telefono.value.trim(),
-email: email.value.trim(),
-fecha_nacimiento: fecha_nacimiento.value || null,
-domicilio: domicilio.value.trim() || null
+const data={
+nombre:nombre.value.trim(),
+apellido:apellido.value.trim(),
+dni:dni.value.trim(),
+telefono:telefono.value.trim(),
+email:email.value.trim(),
+fecha_nacimiento:fecha_nacimiento.value||null,
+domicilio:domicilio.value.trim()||null
 };
 
-try {
-const { error } = await supabaseClient.from('inscripciones').insert([data]);
-if (error) throw error;
+try{
+const{error}=await supabaseClient.from('inscripciones').insert([data]);
+if(error)throw error;
 
-formulario.style.display = 'none';
-exito.style.display = 'block';
+formulario.style.display='none';
+exito.style.display='block';
 
-} catch (err) {
-mensaje.textContent = 'Error al guardar';
+}catch(err){
+mensaje.textContent='Error al guardar';
 }
 });
 </script>
