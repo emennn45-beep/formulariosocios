@@ -8,76 +8,87 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
+*{box-sizing:border-box}
+
 html,body{
 margin:0;
 padding:0;
-height:100%;
+min-height:100%;
 }
 
 body{
-font-family:Arial,sans-serif;
-
-background:url("https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/fondosocioformulario.png") center center no-repeat;
+font-family:Arial, sans-serif;
+background:url("fondosocioformulario.png") center center no-repeat;
 background-size:cover;
 
 display:flex;
 align-items:center;
 justify-content:center;
-}
-
-/* CONTENEDOR GENERAL */
-.container{
-width:100%;
-max-width:480px;
 padding:20px;
 }
 
-/* FORMULARIO */
-#formulario{
-background:rgba(0,0,0,.45);
-padding:25px;
-border-radius:12px;
-}
-
-/* LABELS */
-label{
-display:block;
-margin-top:14px;
-color:white;
-font-weight:bold;
-}
-
-/* INPUTS */
-input{
+/* CONTENEDOR */
+.container{
 width:100%;
-padding:12px 8px;
-margin-top:6px;
+max-width:420px;
+}
 
-background:rgba(0,0,0,.4);
+/* TARJETA FORM */
+#formulario, #exito{
+background:rgba(0,0,0,.55);
+backdrop-filter:blur(8px);
+padding:28px;
+border-radius:18px;
+}
+
+/* CAMPOS */
+.field{
+position:relative;
+margin-bottom:20px;
+}
+
+.field input{
+width:100%;
+padding:14px 10px;
+background:transparent;
 border:none;
-border-bottom:2px solid white;
-
+border-bottom:2px solid rgba(255,255,255,.8);
 color:white;
 font-size:16px;
-box-sizing:border-box;
 }
 
-input:focus{
-outline:none;
-}
-
-input::placeholder{
+.field label{
+position:absolute;
+top:50%;
+left:10px;
+transform:translateY(-50%);
 color:rgba(255,255,255,.7);
+pointer-events:none;
+transition:.3s;
+font-size:14px;
 }
 
-/* CHECKBOX */
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label{
+top:-6px;
+font-size:11px;
+color:white;
+}
+
+.field input:focus{
+outline:none;
+border-bottom:2px solid white;
+}
+
+/* CHECK */
 .checkbox{
-margin-top:18px;
+margin:20px 0;
 color:white;
 font-size:14px;
 }
 
-input[type="checkbox"]{
+.checkbox input{
 appearance:none;
 width:18px;
 height:18px;
@@ -87,52 +98,47 @@ margin-right:8px;
 vertical-align:middle;
 }
 
-input[type="checkbox"]:checked{
+.checkbox input:checked{
 background:white;
 }
 
 /* BOTON */
 button{
 width:100%;
-margin-top:22px;
-padding:14px;
-
-background:white;
-color:black;
-
+padding:15px;
 border:none;
-border-radius:8px;
-
+border-radius:10px;
 font-size:16px;
 font-weight:bold;
+background:white;
+color:black;
 cursor:pointer;
 }
 
 /* MENSAJE */
 #mensaje{
-text-align:center;
-margin-top:15px;
 color:white;
-font-weight:bold;
+text-align:center;
+margin-top:10px;
 }
 
 /* EXITO */
 #exito{
 display:none;
-text-align:center;
 color:white;
+text-align:center;
 }
 
-/* RESPONSIVE CELULARES */
+#exito button{
+margin-top:15px;
+}
+
+/* MOBILE */
 @media(max-width:480px){
-.container{
-padding:15px;
+body{padding:10px}
+.field input{font-size:14px}
 }
 
-input{
-font-size:14px;
-}
-}
 </style>
 </head>
 
@@ -144,31 +150,45 @@ font-size:14px;
 
 <form id="form-inscripcion">
 
+<div class="field">
+<input id="nombre" placeholder=" " required>
 <label>Nombre</label>
-<input type="text" id="nombre" required>
+</div>
 
+<div class="field">
+<input id="apellido" placeholder=" " required>
 <label>Apellido</label>
-<input type="text" id="apellido" required>
+</div>
 
+<div class="field">
+<input id="dni" placeholder=" " required>
 <label>DNI</label>
-<input type="text" id="dni" required>
+</div>
 
+<div class="field">
+<input id="telefono" placeholder=" " required>
 <label>Teléfono / WhatsApp</label>
-<input type="tel" id="telefono" required>
+</div>
 
+<div class="field">
+<input id="email" type="email" placeholder=" " required>
 <label>Email</label>
-<input type="email" id="email" required>
+</div>
 
-<label>Fecha de nacimiento (opcional)</label>
-<input type="date" id="fecha_nacimiento">
+<div class="field">
+<input id="fecha_nacimiento" type="date">
+<label>Fecha nacimiento</label>
+</div>
 
-<label>Domicilio (opcional)</label>
-<input type="text" id="domicilio">
+<div class="field">
+<input id="domicilio" placeholder=" ">
+<label>Domicilio</label>
+</div>
 
 <div class="checkbox">
 <label>
 <input type="checkbox" id="acepto" required>
-Acepto los términos y condiciones del club.
+Acepto los términos y condiciones del club
 </label>
 </div>
 
@@ -183,15 +203,20 @@ Acepto los términos y condiciones del club.
 <div id="exito">
 <h2>¡Inscripción Exitosa!</h2>
 <p>Ahora haz el aporte único desde acá:</p>
-<button onclick="window.location.href='https://tupagina-de-aporte.com'">Hacer Aporte</button>
-<p>No cierres la pantalla.</p>
+<p>No cierres la pantalla. Al confirmarse el pago serás redirigido.</p>
+
+<button onclick="window.location.href='https://tupagina-de-aporte.com'">
+Hacer Aporte
+</button>
 </div>
 
 </div>
 
 <script>
+
 const supabaseUrl='https://sacnwhuuuogjvgvxqdky.supabase.co';
 const supabaseKey='sb_publishable_FqkvHSOJk8YN2mgh-UmLew_a3y4q8xB';
+
 const supabaseClient=supabase.createClient(supabaseUrl,supabaseKey);
 
 const form=document.getElementById('form-inscripcion');
@@ -201,7 +226,6 @@ const formulario=document.getElementById('formulario');
 
 form.addEventListener('submit',async(e)=>{
 e.preventDefault();
-mensaje.textContent='';
 
 const data={
 nombre:nombre.value.trim(),
@@ -214,6 +238,7 @@ domicilio:domicilio.value.trim()||null
 };
 
 try{
+
 const{error}=await supabaseClient.from('inscripciones').insert([data]);
 if(error)throw error;
 
@@ -221,9 +246,11 @@ formulario.style.display='none';
 exito.style.display='block';
 
 }catch(err){
-mensaje.textContent='Error al guardar';
+mensaje.innerText="Error al guardar";
 }
+
 });
+
 </script>
 
 </body>
