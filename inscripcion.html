@@ -84,11 +84,11 @@
     <div id="mensaje"></div>
 
     <script>
-        // REEMPLAZÁ ESTAS DOS LÍNEAS CON TUS VALORES REALES
-        const supabaseUrl = 'https://TU-PROJECT-REF.supabase.co';          // ← CAMBIAR (Project URL)
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IlRVLVJFRiIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzE5MDAwMDAwLCJleHAiOjIwMzU1NzYwMDB9.TU-CLAVE-ANON-PUBLIC';  // ← CAMBIAR (anon public key)
+        // 🔗 CONEXIÓN REAL A SUPABASE
+        const supabaseUrl = 'https://sacnwhuuuogjvgvxqdky.supabase.co';
+        const supabaseKey = 'sb_publishable_FqkvHSOJk8YN2mgh-UmLew_a3y4q8xB';
 
-        const supabase = Supabase.createClient(supabaseUrl, supabaseKey);
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
         const form = document.getElementById('form-inscripcion');
         const mensaje = document.getElementById('mensaje');
