@@ -172,7 +172,7 @@ button:hover {
 <script>
 const supabaseUrl = 'https://sacnwhuuuogjvgvxqdky.supabase.co';
 const supabaseKey = 'sb_publishable_FqkvHSOJk8YN2mgh-UmLew_a3y4q8xB';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
 const form = document.getElementById('form-inscripcion');
 const mensaje = document.getElementById('mensaje');
@@ -182,7 +182,6 @@ const formulario = document.getElementById('formulario');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   mensaje.textContent = '';
-  mensaje.className = '';
 
   const data = {
     nombre: document.getElementById('nombre').value.trim(),
@@ -195,15 +194,17 @@ form.addEventListener('submit', async (e) => {
   };
 
   try {
-    const { error } = await supabase.from('inscripciones').insert([data]);
+    const { data: insertData, error } = await supabaseClient
+      .from('inscripciones')
+      .insert([data]);
+
     if (error) throw error;
 
     formulario.style.display = 'none';
     exito.style.display = 'block';
   } catch (err) {
-    console.error(err);
+    console.error('Error:', err);
     mensaje.textContent = 'Error al guardar: ' + (err.message || 'Intenta de nuevo más tarde');
-    mensaje.className = 'error';
   }
 });
 </script>
